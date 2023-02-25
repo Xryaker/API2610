@@ -29,4 +29,14 @@ public class RestGet {
       //  return stringBuilder.toString();
         return entity;
     }
+    public static int getStatuCode(String url){
+        CloseableHttpClient httpClient= HttpClientBuilder.create().build();
+        HttpResponse response;
+        try {
+            response = httpClient.execute(new HttpGet(url));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return response.getStatusLine().getStatusCode();
+    }
 }
